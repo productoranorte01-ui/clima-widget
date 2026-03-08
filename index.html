@@ -1,98 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clima Olavarría</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: transparent !important;
-    }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .weather-card {
-      background: rgba(0,0,50,0.7);
-      border-radius: 20px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-    .icon {
-      font-size: 100px;
-      margin-bottom: 20px;
-      display: block;
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-    }
-    .temp {
-      font-size: 72px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-    .details {
-      font-size: 20px;
-      margin-top: 20px;
-      line-height: 1.8;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olavarría</title>
 </head>
 <body>
-  <div class="weather-card">
-    <div class="icon" id="icon">⏳</div>
-    <div class="temp" id="temp">--°C</div>
-    <div class="details" id="details">Cargando...</div>
-  </div>
-
-  <script>
-    function getWeatherIcon(code) {
-      if (code === 0 || code === 1) return '☀️';
-      if (code === 2 || code === 3) return '⛅';
-      if (code === 45 || code === 48) return '🌫️';
-      if (code >= 51 && code <= 67) return '🌧️';
-      if (code >= 71 && code <= 86) return '❄️';
-      if (code >= 80 && code <= 82) return '⛈️';
-      if (code >= 95) return '⛈️';
-      return '☀️';
-    }
-
-    async function getWeather() {
-      try {
-        const url = 'https://api.open-meteo.com/v1/forecast?latitude=-36.2647&longitude=-60.3206&current=temperature_2m,weather_code,relative_humidity_2m,wind_speed_10m,apparent_temperature&temperature_unit=celsius&wind_speed_unit=kmh&timezone=America/Argentina/Buenos_Aires';
-        
-        const response = await fetch(url);
-        const data = await response.json();
-        const current = data.current;
-
-        document.getElementById('icon').textContent = getWeatherIcon(current.weather_code);
-        document.getElementById('temp').textContent = Math.round(current.temperature_2m) + '°C';
-        document.getElementById('details').innerHTML = `
-          Viento: ${Math.round(current.wind_speed_10m)} km/h<br>
-          Humedad: ${current.relative_humidity_2m}%<br>
-          Sensación: ${Math.round(current.apparent_temperature)}°C
-        `;
-      } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('details').innerHTML = 'Error al cargar clima';
-      }
-    }
-
-    getWeather();
-    setInterval(getWeather, 300000);
-  </script>
+    <h1>Welcome to Clima Widget</h1>
+    <p>Content goes here.</p>
+    <footer>
+        <p>Current time: 2026-03-08 01:39:46</p>
+    </footer>
 </body>
 </html>
